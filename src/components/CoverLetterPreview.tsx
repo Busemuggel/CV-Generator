@@ -1,6 +1,6 @@
-import { Mail, Phone, MapPin, Linkedin, Globe } from 'lucide-react';
-import type { CoverLetterData, PersonalInfo, BrandingData } from '../types';
-import { FormattedText } from './FormattedText';
+import { Mail, Phone, MapPin, Linkedin, Globe } from "lucide-react";
+import type { CoverLetterData, PersonalInfo, BrandingData } from "../types";
+import { FormattedText } from "./FormattedText";
 
 interface CoverLetterPreviewProps {
   coverLetterData: CoverLetterData;
@@ -8,15 +8,15 @@ interface CoverLetterPreviewProps {
   brandingData: BrandingData;
 }
 
-export function CoverLetterPreview({ 
-  coverLetterData, 
-  personalInfo, 
-  brandingData 
+export function CoverLetterPreview({
+  coverLetterData,
+  personalInfo,
+  brandingData,
 }: CoverLetterPreviewProps) {
-  const currentDate = new Date().toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
+  const currentDate = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 
   return (
@@ -130,6 +130,7 @@ export function CoverLetterPreview({
           <FormattedText
             text={coverLetterData.introduction}
             className="text-slate-700 leading-relaxed"
+            primaryColor={brandingData.primaryColor}
           />
         </div>
 
@@ -138,6 +139,7 @@ export function CoverLetterPreview({
           <FormattedText
             text={coverLetterData.mainBody}
             className="text-slate-700 leading-relaxed"
+            primaryColor={brandingData.primaryColor}
           />
         </div>
 
@@ -146,6 +148,7 @@ export function CoverLetterPreview({
           <FormattedText
             text={coverLetterData.closing}
             className="text-slate-700 leading-relaxed"
+            primaryColor={brandingData.primaryColor}
           />
         </div>
 
