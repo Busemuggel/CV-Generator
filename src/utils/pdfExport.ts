@@ -1,41 +1,44 @@
-export async function exportToPDF(element: HTMLElement, filename: string): Promise<void> {
+export async function exportToPDF(
+  element: HTMLElement,
+  filename: string
+): Promise<void> {
   // Store the original document title
   const originalTitle = document.title;
-  
+
   // Set the document title to the desired filename (without extension)
-  document.title = filename.replace('.pdf', '');
+  document.title = filename.replace(".pdf", "");
 
   // Create a new window/iframe for printing
-  const printWindow = window.open('', '_blank');
-  
+  const printWindow = window.open("", "_blank");
+
   if (!printWindow) {
-    alert('Please allow pop-ups to export PDF');
+    alert("Please allow pop-ups to export PDF");
     return;
   }
 
   // Clone the element to print
   const clonedElement = element.cloneNode(true) as HTMLElement;
-  
+
   // Get all stylesheets from the parent document
   const styles = Array.from(document.styleSheets)
-    .map(styleSheet => {
+    .map((styleSheet) => {
       try {
         return Array.from(styleSheet.cssRules)
-          .map(rule => rule.cssText)
-          .join('\n');
+          .map((rule) => rule.cssText)
+          .join("\n");
       } catch (e) {
         // Handle CORS issues with external stylesheets
-        return '';
+        return "";
       }
     })
-    .join('\n');
+    .join("\n");
 
   // Build the print window HTML
   printWindow.document.write(`
     <!DOCTYPE html>
     <html>
       <head>
-        <title>${filename.replace('.pdf', '')}</title>
+        <title>${filename.replace(".pdf", "")}</title>
         <style>
           ${styles}
           
@@ -71,15 +74,15 @@ export async function exportToPDF(element: HTMLElement, filename: string): Promi
       </body>
     </html>
   `);
-  
+
   printWindow.document.close();
-  
+
   // Wait for content to load, then print
   printWindow.onload = () => {
     setTimeout(() => {
       printWindow.focus();
       printWindow.print();
-      
+
       // Close the print window after printing (or if user cancels)
       setTimeout(() => {
         printWindow.close();
