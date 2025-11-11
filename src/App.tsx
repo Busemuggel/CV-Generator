@@ -195,6 +195,7 @@ export default function App() {
                 <div className="sticky top-6">
                   <div className="flex items-center justify-between mb-4">
                     <h2>Preview</h2>
+                    <div className="mt-12"></div>
                     <Button
                       onClick={handleExportCV}
                       className="flex items-center gap-2"

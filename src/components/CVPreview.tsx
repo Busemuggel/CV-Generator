@@ -21,7 +21,7 @@ export function CVPreview({ cvData, brandingData }: CVPreviewProps) {
     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
       <div 
         id="cv-preview" 
-        className="bg-white p-12"
+        className="bg-white px-12"
         style={{
           width: '210mm',
           minHeight: '297mm',

@@ -45,7 +45,8 @@ export async function exportToPDF(
           @media print {
             @page {
               size: A4;
-              margin: 0;
+              margin-top: 10mm;
+              margin-bottom: 10mm;
             }
             
             body {
