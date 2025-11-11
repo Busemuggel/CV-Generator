@@ -1,0 +1,8 @@
+/* CSS for formatted text with hanging indentation on soft wraps */
+
+.ft-bullet {
+  white-space: pre-wrap; /* Behält manuelle Zeilenumbrüche und Spaces bei */
+  display: block;
+  padding-left: 1.3ch; /* Platz für den Einzug */
+  text-indent: -1.3ch; /* Erste Zeile rückt zurück → Folgezeilen eingerückt */
+}

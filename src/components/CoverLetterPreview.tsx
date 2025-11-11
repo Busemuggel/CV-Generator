@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Linkedin, Globe } from 'lucide-react';
 import type { CoverLetterData, PersonalInfo, BrandingData } from '../types';
+import { FormattedText } from './FormattedText';
 
 interface CoverLetterPreviewProps {
   coverLetterData: CoverLetterData;
@@ -106,23 +107,26 @@ export function CoverLetterPreview({
 
         {/* Introduction */}
         <div className="mb-6">
-          <p className="text-slate-700 whitespace-pre-line leading-relaxed">
-            {coverLetterData.introduction}
-          </p>
+          <FormattedText
+            text={coverLetterData.introduction}
+            className="text-slate-700 leading-relaxed"
+          />
         </div>
 
         {/* Main Body */}
         <div className="mb-6">
-          <p className="text-slate-700 whitespace-pre-line leading-relaxed">
-            {coverLetterData.mainBody}
-          </p>
+          <FormattedText
+            text={coverLetterData.mainBody}
+            className="text-slate-700 leading-relaxed"
+          />
         </div>
 
         {/* Closing */}
         <div className="mb-8">
-          <p className="text-slate-700 whitespace-pre-line leading-relaxed">
-            {coverLetterData.closing}
-          </p>
+          <FormattedText
+            text={coverLetterData.closing}
+            className="text-slate-700 leading-relaxed"
+          />
         </div>
 
         {/* Signature */}

@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Linkedin, Globe, Calendar, MapPinned, Cake } from 'lucide-react';
 import type { CVData, BrandingData } from '../types';
+import { FormattedText } from './FormattedText';
 
 interface CVPreviewProps {
   cvData: CVData;
@@ -150,9 +151,10 @@ export function CVPreview({ cvData, brandingData }: CVPreviewProps) {
                   </div>
                   
                   {exp.description && (
-                    <p className="text-slate-700 whitespace-pre-line">
-                      {exp.description}
-                    </p>
+                    <FormattedText
+                      text={exp.description}
+                      className="text-slate-700"
+                    />
                   )}
                 </div>
               ))}
