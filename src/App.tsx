@@ -15,8 +15,8 @@ export default function App() {
     personalInfo: {
       fullName: "Ben Hoppe",
       email: "hoppe.ben97@gmail.com",
-      dateOfBirth: "25.05.1997",
-      phone: "+49178 3430434",
+      dateOfBirth: "1997-05-25",
+      phone: "+49 178 3430434",
       location: "55116, Mainz",
       linkedin: "https://www.linkedin.com/in/ben-hoppe-b8b3bb1a0/",
       website: "https://ben-hoppe.de/",
@@ -52,8 +52,7 @@ export default function App() {
         location: "Mainz",
         startDate: "2023-05",
         endDate: "2025-10",
-        description: `- Website: https://ben-hoppe.de/
-- Entwicklung eines Systems zur automatisierten Lead-Generierung & KI-basierten Outreach-Kommunikation
+        description: `- Entwicklung eines Systems zur automatisierten Lead-Generierung & KI-basierten Outreach-Kommunikation
 - Integration einer Webseite mit spezialisierter Coaching-Software
 - Entwicklung einer umfassenden Coaching-Plattform im IT-Bereich
 - Entwicklung maßgeschneiderter, interaktiver Workshops basierend auf Analyseergebnissen
