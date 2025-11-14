@@ -8,22 +8,36 @@ import {
   MapPinned,
   Cake,
 } from "lucide-react";
-import type { CVData, BrandingData } from "../types";
+import type { CVData, BrandingData, Language } from "../types";
 import { FormattedText } from "./FormattedText";
 
 interface CVPreviewProps {
   cvData: CVData;
   brandingData: BrandingData;
+  language: Language;
 }
 
-export function CVPreview({ cvData, brandingData }: CVPreviewProps) {
+export function CVPreview({ cvData, brandingData, language }: CVPreviewProps) {
+  const sectionTitles: Record<Language, { skills: string; experience: string }> = {
+    de: {
+      skills: "Fähigkeiten",
+      experience: "Erfahrung",
+    },
+    en: {
+      skills: "Skills",
+      experience: "Experience",
+    },
+  };
+
   const formatDate = (dateStr: string) => {
     if (!dateStr) return "";
-    if (dateStr.toLowerCase() === "present") return "Present";
+    if (dateStr.toLowerCase() === "present") {
+      return language === "de" ? "Aktuell" : "Present";
+    }
 
     const [year, month] = dateStr.split("-");
     const date = new Date(parseInt(year), parseInt(month) - 1);
-    return date.toLocaleDateString("en-US", {
+    return date.toLocaleDateString(language === "de" ? "de-DE" : "en-US", {
       month: "short",
       year: "numeric",
     });
@@ -81,7 +95,7 @@ export function CVPreview({ cvData, brandingData }: CVPreviewProps) {
                     <span>
                       {new Date(
                         cvData.personalInfo.dateOfBirth
-                      ).toLocaleDateString("de-DE", {
+                      ).toLocaleDateString(language === "de" ? "de-DE" : "en-US", {
                         day: "2-digit",
                         month: "2-digit",
                         year: "numeric",
@@ -144,7 +158,7 @@ export function CVPreview({ cvData, brandingData }: CVPreviewProps) {
         {cvData.skills.length > 0 && (
           <div className="mb-8">
             <h2 className="mb-4" style={{ color: brandingData.primaryColor }}>
-              Fähigkeiten
+              {sectionTitles[language].skills}
             </h2>
             <div className="flex flex-wrap gap-2">
               {cvData.skills.map((skill, index) => (
@@ -164,7 +178,7 @@ export function CVPreview({ cvData, brandingData }: CVPreviewProps) {
         {cvData.experiences.length > 0 && (
           <div>
             <h2 className="mb-4" style={{ color: brandingData.primaryColor }}>
-              Erfahrung
+              {sectionTitles[language].experience}
             </h2>
             <div className="space-y-6">
               {cvData.experiences.map((exp) => (
@@ -197,8 +211,9 @@ export function CVPreview({ cvData, brandingData }: CVPreviewProps) {
                     <div className="flex items-center gap-1 text-slate-500">
                       <Calendar className="h-3 w-3" />
                       <span>
-                        {formatDate(exp.startDate)} -{" "}
-                        {formatDate(exp.endDate) || "Present"}
+                        {formatDate(exp.startDate)}{" - "}
+                        {formatDate(exp.endDate) ||
+                          (language === "de" ? "Aktuell" : "Present")}
                       </span>
                     </div>
                   </div>
