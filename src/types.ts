@@ -41,3 +41,5 @@ export interface BrandingData {
   secondaryColor: string;
   companyLogo: string | null;
 }
+
+export type Language = 'de' | 'en';

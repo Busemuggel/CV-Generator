@@ -1,23 +1,44 @@
 import { Mail, Phone, MapPin, Linkedin, Globe } from "lucide-react";
-import type { CoverLetterData, PersonalInfo, BrandingData } from "../types";
+import type {
+  CoverLetterData,
+  PersonalInfo,
+  BrandingData,
+  Language,
+} from "../types";
 import { FormattedText } from "./FormattedText";
 
 interface CoverLetterPreviewProps {
   coverLetterData: CoverLetterData;
   personalInfo: PersonalInfo;
   brandingData: BrandingData;
+  language: Language;
 }
 
 export function CoverLetterPreview({
   coverLetterData,
   personalInfo,
   brandingData,
+  language,
 }: CoverLetterPreviewProps) {
-  const currentDate = new Date().toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const translations: Record<Language, { subject: string; closing: string }> = {
+    de: {
+      subject: "Betreff: Bewerbung als ",
+      closing: "Herzliche Grüße",
+    },
+    en: {
+      subject: "Subject: Application for ",
+      closing: "Kind regards",
+    },
+  };
+
+  const currentDate = new Date().toLocaleDateString(
+    language === "de" ? "de-DE" : "en-US",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+  );
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -113,7 +134,7 @@ export function CoverLetterPreview({
         {/* Subject Line */}
         <div className="mb-6">
           <p className="text-slate-700">
-            <span>Betreff: Bewerbung als </span>
+            <span>{translations[language].subject}</span>
             <span style={{ color: brandingData.primaryColor }}>
               {coverLetterData.position}
             </span>
@@ -154,7 +175,9 @@ export function CoverLetterPreview({
 
         {/* Signature */}
         <div className="mt-8">
-          <p className="text-slate-700 mb-2">Herzliche Grüße</p>
+          <p className="text-slate-700 mb-2">
+            {translations[language].closing}
+          </p>
           <p
             className="text-slate-700"
             style={{ color: brandingData.primaryColor }}
